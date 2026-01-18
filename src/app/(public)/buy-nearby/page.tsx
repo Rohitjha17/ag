@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import {
   MapPin,
@@ -39,7 +39,7 @@ function DistributorSkeleton() {
 }
 
 export default function BuyNearbyPage() {
-  const { language } = useStore();
+  const { language, user } = useStore();
   const { toast } = useToast();
   const [pincode, setPincode] = useState("");
   const [searchedPincode, setSearchedPincode] = useState("");
@@ -47,6 +47,45 @@ export default function BuyNearbyPage() {
   const [isLocating, setIsLocating] = useState(false);
   const [distributors, setDistributors] = useState<Distributor[]>([]);
   const [hasSearched, setHasSearched] = useState(false);
+
+  // Search function that can be called with pincode parameter
+  const handleSearchWithPincode = async (pincodeToSearch: string) => {
+    if (!pincodeToSearch || pincodeToSearch.length !== 6) {
+      return;
+    }
+    
+    setIsSearching(true);
+    setHasSearched(true);
+    
+    try {
+      const response = await api.getDistributors({ pincode: pincodeToSearch });
+      
+      if (response.success && response.data) {
+        setDistributors(response.data);
+        setSearchedPincode(pincodeToSearch);
+      } else {
+        setDistributors([]);
+        toast({
+          title: language === "en" ? "Error" : "त्रुटि",
+          description: response.error?.message || (language === "en"
+            ? "Failed to search distributors"
+            : "वितरकों की खोज विफल रही"),
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      setDistributors([]);
+      toast({
+        title: language === "en" ? "Error" : "त्रुटि",
+        description: language === "en"
+          ? "Something went wrong. Please try again."
+          : "कुछ गलत हो गया। कृपया पुनः प्रयास करें।",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSearching(false);
+    }
+  };
 
   const handleSearch = async () => {
     if (!pincode || pincode.length !== 6) {
@@ -149,6 +188,36 @@ export default function BuyNearbyPage() {
       setIsLocating(false);
     }
   };
+
+  // Fetch user pincode and auto-search on mount if user is logged in
+  useEffect(() => {
+    const fetchUserPincodeAndSearch = async () => {
+      if (user?.pincode && user.pincode.length === 6) {
+        // User has pincode in store, use it
+        setPincode(user.pincode);
+        // Auto-search with user's pincode
+        handleSearchWithPincode(user.pincode);
+      } else if (user?.id) {
+        // User is logged in but pincode not in store, fetch profile
+        try {
+          const response = await api.getProfile();
+          if (response.success && response.data?.pin_code) {
+            const userPincode = response.data.pin_code;
+            if (userPincode && userPincode.length === 6) {
+              setPincode(userPincode);
+              // Auto-search with fetched pincode
+              handleSearchWithPincode(userPincode);
+            }
+          }
+        } catch (error) {
+          console.error("Failed to fetch user profile:", error);
+        }
+      }
+    };
+
+    fetchUserPincodeAndSearch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.id, user?.pincode]);
 
   return (
     <div className="min-h-screen bg-secondary/20">

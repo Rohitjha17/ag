@@ -44,6 +44,21 @@ export default function ScanPage() {
   const [scratchProgress, setScratchProgress] = useState(0);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera;
+      const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
+      const isMobileDevice = mobileRegex.test(userAgent.toLowerCase()) || window.innerWidth < 768;
+      setIsMobile(isMobileDevice);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Initialize scratch canvas
   useEffect(() => {
@@ -261,12 +276,14 @@ export default function ScanPage() {
             
             
           >
-            <Tabs defaultValue="manual" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="scan">
-                  <QrCode className="h-4 w-4 mr-2" />
-                  {language === "en" ? "Scan QR Code" : "QR कोड स्कैन करें"}
-                </TabsTrigger>
+            <Tabs defaultValue={isMobile ? "scan" : "manual"} className="w-full">
+              <TabsList className={`grid w-full ${isMobile ? 'grid-cols-2' : 'grid-cols-1'}`}>
+                {isMobile && (
+                  <TabsTrigger value="scan">
+                    <QrCode className="h-4 w-4 mr-2" />
+                    {language === "en" ? "Scan QR Code" : "QR कोड स्कैन करें"}
+                  </TabsTrigger>
+                )}
                 <TabsTrigger value="manual">
                   <Keyboard className="h-4 w-4 mr-2" />
                   {language === "en" ? "Enter Code" : "कोड दर्ज करें"}
