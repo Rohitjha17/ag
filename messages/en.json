@@ -1,0 +1,195 @@
+{
+  "common": {
+    "home": "Home",
+    "products": "Products",
+    "bestSelling": "Best Selling",
+    "scanWin": "Scan & Win",
+    "buyNearby": "Buy Nearby",
+    "contact": "Contact",
+    "about": "About Us",
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Register",
+    "dashboard": "Dashboard",
+    "profile": "My Profile",
+    "rewards": "My Rewards",
+    "viewDetails": "View Details",
+    "viewAll": "View All",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "loading": "Loading...",
+    "submit": "Submit",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "call": "Call Now",
+    "whatsapp": "WhatsApp",
+    "directions": "Get Directions",
+    "download": "Download",
+    "english": "English",
+    "hindi": "हिंदी"
+  },
+  "hero": {
+    "tagline": "Bhartiya Kisan Ki Pehli Pasand",
+    "taglineHi": "भारतीय किसान की पहली पसंद",
+    "subtitle": "Premium Agrochemicals for Higher Yield",
+    "viewProducts": "View Products",
+    "registerNow": "Register Now",
+    "loginScanWin": "Login for Scan & Win"
+  },
+  "features": {
+    "title": "Why Choose Agrio India",
+    "scanWin": {
+      "title": "Scan & Win Rewards",
+      "description": "Scan product QR codes to earn exciting rewards directly."
+    },
+    "distributors": {
+      "title": "Nearby Distributors",
+      "description": "Easily locate our trusted distributors in your area."
+    },
+    "farmerFriendly": {
+      "title": "Farmer-Friendly Products",
+      "description": "High-quality products designed for the modern Indian farmer."
+    },
+    "hindiSupport": {
+      "title": "Hindi Support",
+      "description": "Access all information and support in Hindi."
+    },
+    "quality": {
+      "title": "Assured Quality",
+      "description": "Our products undergo rigorous testing to ensure the highest quality standards."
+    },
+    "yield": {
+      "title": "Better Crop Yield",
+      "description": "Formulated to boost crop health and maximize your agricultural output."
+    },
+    "trusted": {
+      "title": "Trusted By Farmers",
+      "description": "Millions of farmers across India trust us for their crop care needs."
+    },
+    "range": {
+      "title": "Wide Range of Products",
+      "description": "A comprehensive portfolio of agrochemicals for various crops and needs."
+    }
+  },
+  "products": {
+    "title": "Our Products",
+    "subtitle": "High-quality solutions for every crop",
+    "bestSelling": "Best Selling Products",
+    "all": "All",
+    "insecticides": "Insecticides",
+    "fungicides": "Fungicides",
+    "herbicides": "Herbicides",
+    "pgr": "PGR",
+    "fertilizers": "Fertilizers",
+    "composition": "Technical Composition",
+    "uses": "Uses / Application",
+    "suitableCrops": "Suitable Crops",
+    "findDistributor": "Find Nearby Distributor",
+    "relatedProducts": "Related Products"
+  },
+  "auth": {
+    "welcomeBack": "Welcome Back",
+    "welcomeNew": "Welcome to Agrio India",
+    "enterMobile": "Enter your mobile number to log in or sign up",
+    "mobileNumber": "Mobile Number",
+    "mobilePlaceholder": "Enter your 10-digit mobile number",
+    "getOtp": "Get OTP",
+    "enterOtp": "Enter OTP",
+    "otpSent": "We've sent a 6-digit OTP to",
+    "resendOtp": "Resend OTP",
+    "resendIn": "Resend in",
+    "verifyLogin": "Verify & Login",
+    "completeProfile": "Complete Your Profile",
+    "fullName": "Full Name",
+    "namePlaceholder": "Enter your full name",
+    "pincode": "Pincode",
+    "pincodePlaceholder": "Enter your 6-digit pincode",
+    "autoDetect": "Auto-detect",
+    "selectCrops": "Select Your Crops",
+    "selectCropsHint": "Select crops you cultivate to get personalized recommendations",
+    "completeRegistration": "Complete Registration",
+    "termsAgree": "By continuing, you agree to our",
+    "termsOfService": "Terms of Service",
+    "privacyPolicy": "Privacy Policy"
+  },
+  "dashboard": {
+    "welcome": "Welcome",
+    "totalScans": "Total Scans",
+    "couponsWon": "Coupons Won",
+    "rewardsClaimed": "Rewards Claimed",
+    "lastScan": "Last Scan",
+    "scanNewCoupon": "Scan New Coupon",
+    "quickActions": "Quick Actions",
+    "recentActivity": "Recent Activity",
+    "noActivity": "No recent activity",
+    "viewAllRewards": "View All Rewards"
+  },
+  "scan": {
+    "title": "Scan & Win",
+    "scanQr": "Scan QR Code",
+    "enterManually": "Enter Code Manually",
+    "enterCode": "Enter 12-character coupon code",
+    "verifyCoupon": "Verify Coupon",
+    "scanning": "Scanning...",
+    "verifying": "Verifying coupon...",
+    "scratchToReveal": "Scratch to Reveal Your Prize!",
+    "congratulations": "Congratulations!",
+    "youWon": "You Won",
+    "downloadCertificate": "Download Certificate",
+    "viewRewards": "View My Rewards",
+    "invalidCode": "Invalid coupon code",
+    "alreadyUsed": "This coupon has already been used",
+    "expired": "This coupon has expired"
+  },
+  "rewards": {
+    "title": "My Rewards",
+    "subtitle": "Track your earned rewards and download your reward letters.",
+    "all": "All",
+    "redeemed": "Redeemed",
+    "pending": "Pending",
+    "noRewards": "No rewards yet",
+    "startScanning": "Start scanning coupons to win exciting prizes!",
+    "downloadLetter": "Download Letter"
+  },
+  "distributors": {
+    "title": "Find Our Distributor Near You",
+    "subtitle": "Enter your pincode or use your current location to find Agrio products available in your area.",
+    "searchPlaceholder": "Enter Your Pincode",
+    "useLocation": "Use My Location",
+    "showingFor": "Showing Distributors for",
+    "kmAway": "km away",
+    "navigate": "Navigate",
+    "noDistributors": "No Distributors Found",
+    "noDistributorsDesc": "We couldn't find any distributors in your area. Please try another pincode or contact our support for assistance."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+    "name": "Name",
+    "mobile": "Mobile Number",
+    "email": "Email (Optional)",
+    "subject": "Subject",
+    "message": "Message",
+    "send": "Send Message",
+    "address": "Address",
+    "workingHours": "Working Hours",
+    "monSat": "Monday - Saturday",
+    "sunday": "Sunday",
+    "closed": "Closed"
+  },
+  "footer": {
+    "tagline": "Empowering Indian farmers with high-quality crop solutions for a prosperous future.",
+    "quickLinks": "Quick Links",
+    "support": "Support",
+    "contactInfo": "Contact Info",
+    "legal": "Legal",
+    "rights": "All Rights Reserved."
+  }
+}
+
