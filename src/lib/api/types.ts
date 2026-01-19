@@ -441,8 +441,14 @@ export interface AdminUser {
   id: string;
   phone_number: string;
   name?: string;
+  full_name?: string;
   email?: string;
   pincode?: string;
+  pin_code?: string;
+  full_address?: string;
+  state?: string;
+  district?: string;
+  is_active?: boolean;
   role: string;
   total_scans: number;
   total_rewards?: number;
