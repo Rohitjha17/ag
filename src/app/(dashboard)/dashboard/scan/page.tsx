@@ -279,7 +279,11 @@ export default function ScanPage() {
     return () => {
       if (qrCodeScannerRef.current) {
         qrCodeScannerRef.current.stop().catch(() => {});
-        qrCodeScannerRef.current.clear().catch(() => {});
+        try {
+          qrCodeScannerRef.current.clear();
+        } catch (error) {
+          // Ignore clear errors
+        }
       }
     };
   }, []);
