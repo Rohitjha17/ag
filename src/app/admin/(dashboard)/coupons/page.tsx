@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo, useCallback } from "react";
+import QRCode from "qrcode";
 import {
   Search,
   Plus,
@@ -45,12 +46,16 @@ export default function CouponsPage() {
   const [statusFilter, setStatusFilter] = useState("all");
   const [generateDialogOpen, setGenerateDialogOpen] = useState(false);
   const [createCampaignDialogOpen, setCreateCampaignDialogOpen] = useState(false);
+  const [qrDialogOpen, setQrDialogOpen] = useState(false);
   const [coupons, setCoupons] = useState<AdminCoupon[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isGenerating, setIsGenerating] = useState(false);
   const [isCreatingCampaign, setIsCreatingCampaign] = useState(false);
+  const [generateQRCodes, setGenerateQRCodes] = useState(true);
+  const [qrCodesPreview, setQrCodesPreview] = useState<Array<{ code: string; dataUrl: string }>>([]);
+  const [qrBatchInfo, setQrBatchInfo] = useState<{ batchId?: string; generatedCount?: number } | null>(null);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [total, setTotal] = useState(0);
@@ -171,6 +176,36 @@ export default function CouponsPage() {
           title: "Success",
           description: `${generateForm.count} coupons generated successfully`,
         });
+
+        // If enabled, generate QR codes from backend-provided preview codes
+        if (generateQRCodes && response.data?.codes_preview?.length) {
+          const codes = response.data.codes_preview;
+          const qrItems = await Promise.all(
+            codes.map(async (code) => {
+              // QR payload is the coupon code itself so the user scanner can redeem it
+              const dataUrl = await QRCode.toDataURL(code, {
+                errorCorrectionLevel: "M",
+                margin: 2,
+                width: 320,
+              });
+              return { code, dataUrl };
+            })
+          );
+          setQrCodesPreview(qrItems);
+          setQrBatchInfo({
+            batchId: response.data?.batch_id,
+            generatedCount: response.data?.generated_count,
+          });
+          setQrDialogOpen(true);
+        } else if (generateQRCodes) {
+          toast({
+            title: "QR Preview Unavailable",
+            description:
+              "Backend did not return codes_preview. QR preview can only be generated when codes_preview is provided.",
+            variant: "destructive",
+          });
+        }
+
         setGenerateDialogOpen(false);
         setGenerateForm({
           campaign_id: "",
@@ -195,6 +230,24 @@ export default function CouponsPage() {
       });
     }
     setIsGenerating(false);
+  };
+
+  const downloadQrPng = (code: string, dataUrl: string) => {
+    const a = document.createElement("a");
+    a.href = dataUrl;
+    a.download = `QR-${code}.png`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
+
+  const downloadAllQrPngs = async () => {
+    // Browsers may block many downloads; we trigger sequentially with small delay.
+    for (const item of qrCodesPreview) {
+      downloadQrPng(item.code, item.dataUrl);
+      // eslint-disable-next-line no-await-in-loop
+      await new Promise((r) => setTimeout(r, 250));
+    }
   };
 
   const handleCreateCampaign = async () => {
@@ -496,6 +549,23 @@ export default function CouponsPage() {
                 onChange={(e) => setGenerateForm({ ...generateForm, count: e.target.value })}
               />
             </div>
+            <div className="flex items-center gap-2 pt-2">
+              <input
+                id="generate-qr"
+                type="checkbox"
+                className="h-4 w-4"
+                checked={generateQRCodes}
+                onChange={(e) => setGenerateQRCodes(e.target.checked)}
+              />
+              <Label htmlFor="generate-qr" className="cursor-pointer">
+                Generate QR codes (unique, scannable)
+              </Label>
+            </div>
+            <p className="text-xs text-muted-foreground">
+              QR codes are generated from the coupon <span className="font-mono">code</span>. The coupon codes themselves are created by the backend (random + unique).
+              {` `}
+              Note: QR preview depends on backend returning <span className="font-mono">codes_preview</span>.
+            </p>
             <div>
               <Label>Linked Product (Optional)</Label>
               <Select 
@@ -655,6 +725,69 @@ export default function CouponsPage() {
               Create Campaign
             </Button>
           </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* QR Codes Preview Dialog */}
+      <Dialog open={qrDialogOpen} onOpenChange={setQrDialogOpen}>
+        <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Generated QR Codes (Preview)</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-3">
+            {qrBatchInfo?.generatedCount && (
+              <p className="text-sm text-muted-foreground">
+                Generated: <span className="font-medium">{qrBatchInfo.generatedCount}</span>
+                {qrBatchInfo.batchId ? (
+                  <>
+                    {" "}• Batch: <span className="font-mono">{qrBatchInfo.batchId}</span>
+                  </>
+                ) : null}
+              </p>
+            )}
+            <div className="flex gap-2">
+              <Button onClick={downloadAllQrPngs} disabled={qrCodesPreview.length === 0}>
+                Download All PNGs
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setQrCodesPreview([]);
+                  setQrBatchInfo(null);
+                  setQrDialogOpen(false);
+                }}
+              >
+                Close
+              </Button>
+            </div>
+            {qrCodesPreview.length === 0 ? (
+              <p className="text-sm text-muted-foreground">No QR preview available.</p>
+            ) : (
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 pt-2">
+                {qrCodesPreview.map((item) => (
+                  <div key={item.code} className="border rounded-lg p-3">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={item.dataUrl} alt={`QR ${item.code}`} className="w-full h-auto" />
+                    <div className="mt-2 flex items-center justify-between gap-2">
+                      <span className="font-mono text-xs break-all">{item.code}</span>
+                      <Button
+                        size="sm"
+                        variant="secondary"
+                        onClick={() => downloadQrPng(item.code, item.dataUrl)}
+                      >
+                        Download
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+            {qrBatchInfo?.generatedCount && qrCodesPreview.length > 0 && qrBatchInfo.generatedCount > qrCodesPreview.length ? (
+              <p className="text-xs text-amber-600">
+                Showing preview for {qrCodesPreview.length} codes. Backend generated {qrBatchInfo.generatedCount}. To get QR for all codes, we need an export/list endpoint that returns all generated codes for this batch.
+              </p>
+            ) : null}
+          </div>
         </DialogContent>
       </Dialog>
     </div>
