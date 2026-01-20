@@ -48,6 +48,7 @@ export default function ScanPage() {
   const [isDrawing, setIsDrawing] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isScanning, setIsScanning] = useState(false);
+  const [isProcessingScan, setIsProcessingScan] = useState(false);
   const [facingMode, setFacingMode] = useState<"environment" | "user">("environment");
   const qrCodeScannerRef = useRef<Html5Qrcode | null>(null);
   const qrCodeRegionId = "qr-reader";
@@ -230,8 +231,37 @@ export default function ScanPage() {
     verifyAndRedeemManual(manualCode);
   };
 
+  // Extract coupon/QR code from raw QR payload (can be plain code or URL with ?code=)
+  const extractCodeFromQr = (raw: string): string => {
+    const trimmed = raw.trim();
+    try {
+      const url = new URL(trimmed);
+      const paramCode = url.searchParams.get("code");
+      if (paramCode) return paramCode.trim().toUpperCase();
+      const segments = url.pathname.split("/").filter(Boolean);
+      if (segments.length > 0) {
+        return segments[segments.length - 1].trim().toUpperCase();
+      }
+      return trimmed.toUpperCase();
+    } catch {
+      // Not a URL
+      return trimmed.toUpperCase();
+    }
+  };
+
   // Redeem directly from QR code using /scan/redeem as per backend spec
-  const redeemFromQr = async (code: string) => {
+  const redeemFromQr = async (rawCode: string) => {
+    const code = extractCodeFromQr(rawCode);
+    if (!code) {
+      setState("error");
+      setErrorMessage(
+        language === "en"
+          ? "Invalid QR code. Please try again."
+          : "अमान्य QR कोड। कृपया पुनः प्रयास करें।"
+      );
+      return;
+    }
+
     setState("verifying");
     setErrorMessage("");
 
@@ -345,8 +375,15 @@ export default function ScanPage() {
 
   // Handle QR scan success
   const handleQRScanSuccess = async (code: string) => {
+    // Prevent multiple rapid scans from processing at once
+    if (isProcessingScan) return;
+    setIsProcessingScan(true);
+
     await stopQRScanner();
     await redeemFromQr(code);
+
+    // Allow user to restart scanner manually for another scan
+    setIsProcessingScan(false);
   };
 
   // Toggle camera
