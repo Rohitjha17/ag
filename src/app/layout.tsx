@@ -19,9 +19,9 @@ const notoSansDevanagari = Noto_Sans_Devanagari({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://agrioindia.com"),
-  title: "Agrio India Crop Science | भारतीय किसान की पहली पसंद",
+  title: "Agrio India Crop Science | Agrio Sampan kisan | भारतीय किसान की पहली पसंद",
   description:
-    "Premium agrochemicals for higher yield. Empowering Indian farmers with high-quality crop solutions for a prosperous future.",
+    "Agrio Sampan kisan - Premium agrochemicals for higher yield. Empowering Indian farmers with high-quality crop solutions for a prosperous future.",
   keywords: [
     "agrio india",
     "crop science",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Agrio India Crop Science",
-    description: "भारतीय किसान की पहली पसंद - Premium Agrochemicals for Higher Yield",
+    description: "Agrio Sampan kisan - भारतीय किसान की पहली पसंद - Premium Agrochemicals for Higher Yield",
     type: "website",
     locale: "en_IN",
     images: ["/og-image.png"],
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Agrio India Crop Science",
-    description: "भारतीय किसान की पहली पसंद - Premium Agrochemicals for Higher Yield",
+    description: "Agrio Sampan kisan - भारतीय किसान की पहली पसंद - Premium Agrochemicals for Higher Yield",
     images: ["/og-image.png"],
   },
 };

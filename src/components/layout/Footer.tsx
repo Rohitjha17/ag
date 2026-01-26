@@ -55,8 +55,8 @@ export function Footer() {
             </div>
             <p className="text-sm text-gray-400 leading-relaxed">
               {language === "en"
-                ? "Empowering Indian farmers with high-quality crop solutions for a prosperous future. Join us in cultivating a greener future."
-                : "समृद्ध भविष्य के लिए उच्च गुणवत्ता वाले फसल समाधानों के साथ भारतीय किसानों को सशक्त बनाना।"}
+                ? "Agrio Sampan kisan - Empowering Indian farmers with high-quality crop solutions for a prosperous future."
+                : "एग्रियो संपन किसान - समृद्ध भविष्य के लिए उच्च गुणवत्ता वाले फसल समाधानों के साथ भारतीय किसानों को सशक्त बनाना।"}
             </p>
             {/* Social Links */}
             <div className="flex items-center gap-3 pt-2">
@@ -77,7 +77,7 @@ export function Footer() {
                 <Youtube className="h-5 w-5" />
               </a>
               <a
-                href="https://wa.me/919123456789"
+                href="https://wa.me/919429693729"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-800 hover:bg-green-600 transition-colors"
@@ -134,25 +134,27 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                 <span className="text-sm text-gray-400">
-                  123 Kisan Marg, New Delhi, India
+                  Agrio India Crop Science<br />
+                  E-31 Industrial Area,<br />
+                  Sikandrabad, Bulandshahr - 203205
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-primary shrink-0" />
                 <a
-                  href="mailto:info@agrioindia.com"
+                  href="mailto:agrioindiacropsciences@gmail.com"
                   className="text-sm text-gray-400 hover:text-primary transition-colors"
                 >
-                  info@agrioindia.com
+                  agrioindiacropsciences@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-primary shrink-0" />
                 <a
-                  href="tel:+911800123456"
+                  href="tel:+919520609999"
                   className="text-sm text-gray-400 hover:text-primary transition-colors"
                 >
-                  +91 1800 123 4567
+                  +91 95206 09999
                 </a>
               </li>
             </ul>

@@ -168,7 +168,7 @@ export default function HomePage() {
                 {language === "en" ? "Premium Agrochemicals" : "प्रीमियम कृषि रसायन"}
               </Badge>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                <span className="text-primary italic">Bhartiya Kisan Ki Pehli Pasand</span>
+                <span className="text-primary italic">Agrio Sampan Kisan</span>
               </h1>
               <p className="text-2xl md:text-3xl text-gray-600 font-hindi">
                 भारतीय किसान की पहली पसंद
@@ -436,13 +436,13 @@ export default function HomePage() {
             </div>
             <div className="flex flex-wrap gap-4">
               <Button variant="secondary" size="lg" asChild className="text-primary">
-                <a href="tel:+911800123456">
+                <a href="tel:+919520609999">
                   <Phone className="mr-2 h-5 w-5" />
                   {language === "en" ? "Call Now" : "अभी कॉल करें"}
                 </a>
               </Button>
               <Button variant="outline" size="lg" asChild className="text-white border-white hover:bg-white hover:text-primary">
-                <a href="https://wa.me/919123456789" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/919429693729" target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="mr-2 h-5 w-5" />
                   WhatsApp Us
                 </a>

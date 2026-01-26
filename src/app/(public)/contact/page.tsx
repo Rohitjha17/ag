@@ -142,9 +142,9 @@ export default function ContactPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-gray-600">
-                  123 Kisan Marg,<br />
-                  Sikandrabad Industrial Area,<br />
-                  Bulandshahr, Uttar Pradesh - 203205
+                  Agrio India Crop Science<br />
+                  E-31 Industrial Area,<br />
+                  Sikandrabad, Bulandshahr - 203205
                 </p>
               </CardContent>
             </Card>
@@ -163,10 +163,10 @@ export default function ContactPage() {
               </CardHeader>
               <CardContent>
                 <a
-                  href="mailto:info@agrioindia.com"
+                  href="mailto:agrioindiacropsciences@gmail.com"
                   className="text-sm text-primary hover:underline"
                 >
-                  info@agrioindia.com
+                  agrioindiacropsciences@gmail.com
                 </a>
               </CardContent>
             </Card>
@@ -185,19 +185,19 @@ export default function ContactPage() {
               </CardHeader>
               <CardContent className="space-y-1">
                 <a
-                  href="tel:+911800123456"
+                  href="tel:+919520609999"
                   className="block text-sm text-primary hover:underline"
                 >
-                  +91 1800 123 4567
+                  +91 95206 09999
                 </a>
                 <a
-                  href="https://wa.me/919123456789"
+                  href="https://wa.me/919429693729"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm text-green-600 hover:underline"
                 >
                   <MessageCircle className="h-4 w-4" />
-                  WhatsApp
+                  WhatsApp: +91 94296 93729
                 </a>
               </CardContent>
             </Card>
@@ -375,7 +375,7 @@ export default function ContactPage() {
             <CardContent className="p-0">
               <div className="h-80 bg-gray-200 rounded-b-xl overflow-hidden">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3505.8686775474!2d77.2090212!3d28.5355169!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce38cd4e1b4e9%3A0x7c0c23c9b8a8d8a8!2sNew%20Delhi%2C%20Delhi!5e0!3m2!1sen!2sin!4v1629999999999!5m2!1sen!2sin"
+                  src="https://share.google/Vst4IJkvdvzHRhOdN"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}

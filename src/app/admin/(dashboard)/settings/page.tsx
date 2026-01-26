@@ -72,26 +72,30 @@ export default function SettingsPage() {
                 </div>
                 <div>
                   <Label>Tagline</Label>
+                  <Input defaultValue="Agrio Sampan kisan" className="mt-1" />
+                </div>
+                <div>
+                  <Label>Tagline 2</Label>
                   <Input defaultValue="भारतीय किसान की पहली पसंद" className="mt-1" />
                 </div>
                 <div className="md:col-span-2">
                   <Label>Address</Label>
                   <Textarea 
-                    defaultValue="123 Kisan Marg, Sikandrabad Industrial Area, Bulandshahr, UP - 203205" 
+                    defaultValue="Agrio India Crop Science, E-31 Industrial Area, Sikandrabad, Bulandshahr - 203205" 
                     className="mt-1" 
                   />
                 </div>
                 <div>
                   <Label>Email</Label>
-                  <Input defaultValue="info@agrioindia.com" className="mt-1" />
+                  <Input defaultValue="agrioindiacropsciences@gmail.com" className="mt-1" />
                 </div>
                 <div>
                   <Label>Phone</Label>
-                  <Input defaultValue="+91 1800 123 4567" className="mt-1" />
+                  <Input defaultValue="+91 95206 09999" className="mt-1" />
                 </div>
                 <div>
                   <Label>WhatsApp</Label>
-                  <Input defaultValue="+91 9123456789" className="mt-1" />
+                  <Input defaultValue="+91 94296 93729" className="mt-1" />
                 </div>
                 <div>
                   <Label>Website URL</Label>

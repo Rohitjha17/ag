@@ -79,8 +79,8 @@ export default function AboutPage() {
             </h1>
             <p className="text-lg md:text-xl opacity-90">
               {language === "en"
-                ? "Empowering Indian farmers with high-quality crop solutions for over 25 years."
-                : "25 से अधिक वर्षों से उच्च गुणवत्ता वाले फसल समाधानों के साथ भारतीय किसानों को सशक्त बनाना।"}
+                ? "Agrio Sampan kisan - Empowering Indian farmers with high-quality crop solutions for over 25 years."
+                : "एग्रियो संपन किसान - 25 से अधिक वर्षों से उच्च गुणवत्ता वाले फसल समाधानों के साथ भारतीय किसानों को सशक्त बनाना।"}
             </p>
           </div>
         </div>
